@@ -22,12 +22,14 @@ import org.frameworkset.tran.DataStream;
 import org.frameworkset.tran.ExportResultHandler;
 import org.frameworkset.tran.context.Context;
 import org.frameworkset.tran.kafka.KafkaImportConfig;
+import org.frameworkset.tran.kafka.KafkaMapRecord;
 import org.frameworkset.tran.kafka.input.es.Kafka2ESExportBuilder;
 import org.frameworkset.tran.task.TaskCommand;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
 import java.util.Date;
+import java.util.Map;
 
 /**
  * <p>Description: 同步处理程序，如需调试同步功能，
@@ -193,6 +195,13 @@ public class Kafka2ESdemo {
 				 context.addFieldValue("extfiled",1);
 				 long birthDay = context.getLongValue("birthDay");
 				 context.addFieldValue("birthDay",new Date(birthDay));
+				/**
+				 * 新版本里面可以直接拿到原始记录数据，这个是kafka的消息数据
+				 */
+				KafkaMapRecord record = (KafkaMapRecord) context.getRecord();
+				if(record.getKey() == null)
+					System.out.println("key is null!");
+				Map data = (Map)record.getData();
 				//上述三个属性已经放置到docInfo中，如果无需再放置到索引文档中，可以忽略掉这些属性
 //				context.addIgnoreFieldMapping("author");
 //				context.addIgnoreFieldMapping("title");
