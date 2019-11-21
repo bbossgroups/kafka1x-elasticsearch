@@ -93,7 +93,7 @@ public class Kafka2ESdemo {
 		 <description> <![CDATA[ If true the consumer's offset will be periodically committed in the background.]]></description>
 		 </property>
 		 */
-
+		kafka.utils.VerifiableProperties s;
 		importBuilder//.addKafkaConfig("value.deserializer","org.apache.kafka.common.serialization.StringDeserializer")
 				//.addKafkaConfig("key.deserializer","org.apache.kafka.common.serialization.LongDeserializer")
 				.addKafkaConfig("group.id","test")
@@ -102,14 +102,15 @@ public class Kafka2ESdemo {
 				.addKafkaConfig("auto.commit.interval.ms","5000")
 				.addKafkaConfig("auto.offset.reset","smallest")
 				.addKafkaConfig("zookeeper.connect","192.168.137.133:2183")
-				.addKafkaConfig("enable.auto.commit","true")
+				.addKafkaConfig("auto.commit.enable","true")
 				.setKafkaTopic("blackcatstore")
 				.setConsumerThreads(5)
 				.setCheckinterval(2000)
 				.setDiscardRejectMessage(false)
 				.setPollTimeOut(1000)
 				.setValueCodec(KafkaImportConfig.CODEC_JSON)
-				.setKeyCodec(KafkaImportConfig.CODEC_LONG);
+				.setKeyCodec(KafkaImportConfig.CODEC_LONG)
+		;
 
 //		importBuilder.addIgnoreFieldMapping("remark1");
 //		importBuilder.setSql("select * from td_sm_log ");
