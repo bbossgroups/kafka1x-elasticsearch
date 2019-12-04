@@ -95,7 +95,6 @@ public class Kafka2ESdemo {
 		 <description> <![CDATA[ If true the consumer's offset will be periodically committed in the background.]]></description>
 		 </property>
 		 */
-		kafka.utils.VerifiableProperties s;
 		importBuilder//.addKafkaConfig("value.deserializer","org.apache.kafka.common.serialization.StringDeserializer")
 				//.addKafkaConfig("key.deserializer","org.apache.kafka.common.serialization.LongDeserializer")
 				.addKafkaConfig("group.id","test")
