@@ -28,7 +28,7 @@ kafka高版本（kafka_2.12-2.3.0 系列版本）同步工具案例地址：http
 <dependency>
   <groupId>com.bbossgroups.plugins</groupId>
   <artifactId>bboss-elasticsearch-rest-kafka1x</artifactId>
-  <version>5.9.8</version>
+  <version>5.9.9</version>
   <scope>compile</scope>
 </dependency>
 ```
