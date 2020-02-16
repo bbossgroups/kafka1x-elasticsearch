@@ -28,7 +28,7 @@ kafka高版本客户端（kafka_2.12-0.10.2.0系列版本、kafka_2.12-2.3.0 系
 <dependency>
   <groupId>com.bbossgroups.plugins</groupId>
   <artifactId>bboss-elasticsearch-rest-kafka1x</artifactId>
-  <version>6.0.1</version>
+  <version>6.0.2</version>
   <scope>compile</scope>
 </dependency>
 ```
