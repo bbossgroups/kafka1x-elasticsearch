@@ -25,7 +25,7 @@ Spring boot 1.x,2.x,+
 
 推荐：新版本kafka client客户端（kafka_2.12-0.10.2.0系列版本、kafka_2.12-2.3.0 系列版本）同步工具案例地址：
 
-https://gitee.com/bbossgroups/kafka2x-elasticsearch
+https://gitee.com/bboss/kafka2x-elasticsearch
 
 # 导入maven坐标
 
