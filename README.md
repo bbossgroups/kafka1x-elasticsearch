@@ -8,19 +8,24 @@ JDK requirement: JDK 1.7+
 Elasticsearch version requirements: 1.x,2.X,5.X,6.X,+
 
 Spring boot 1.x,2.x,+
-# kafka1x-Elasticsearch 数据同步工具demo
+# kafka1x-Elasticsearch 数据同步工具（不推荐）
 适用于旧kafka客户端,使用本demo所带的应用程序运行容器环境，可以快速编写，打包发布可运行的数据导入工具
 
-支持的kafka_2.12-0.10.2.0系列版本 到elasticsearch数据同步
+- 支持的kafka_2.12-0.10.2.0系列版本
 
-kafka高版本客户端（kafka_2.12-0.10.2.0系列版本、kafka_2.12-2.3.0 系列版本）同步工具案例地址：https://gitee.com/bbossgroups/kafka2x-elasticsearch
+- 支持的Elasticsearch版本：
+  1.x,2.x,5.x,6.x,7.x,+
 
-支持的Elasticsearch版本：
-1.x,2.x,5.x,6.x,7.x,+
+- 支持海量PB级数据同步导入功能
 
-支持海量PB级数据同步导入功能
 
 [使用参考文档](https://esdoc.bbossgroups.com/#/db-es-tool)
+
+# 新版本kafka client客户端（推荐）
+
+推荐：新版本kafka client客户端（kafka_2.12-0.10.2.0系列版本、kafka_2.12-2.3.0 系列版本）同步工具案例地址：
+
+https://gitee.com/bbossgroups/kafka2x-elasticsearch
 
 # 导入maven坐标
 
