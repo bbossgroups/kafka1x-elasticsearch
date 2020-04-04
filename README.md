@@ -33,7 +33,7 @@ https://gitee.com/bboss/kafka2x-elasticsearch
 <dependency>
   <groupId>com.bbossgroups.plugins</groupId>
   <artifactId>bboss-elasticsearch-rest-kafka1x</artifactId>
-  <version>6.0.7</version>
+  <version>6.0.8</version>
   <scope>compile</scope>
 </dependency>
 ```
