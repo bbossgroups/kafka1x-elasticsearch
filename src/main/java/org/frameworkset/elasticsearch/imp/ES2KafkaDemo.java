@@ -34,7 +34,7 @@ import org.frameworkset.tran.schedule.CallInterceptor;
 import org.frameworkset.tran.schedule.ImportIncreamentConfig;
 import org.frameworkset.tran.schedule.TaskContext;
 import org.frameworkset.tran.task.TaskCommand;
-import org.frameworkset.tran.util.ReocordGenerator;
+import org.frameworkset.tran.util.RecordGenerator;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
@@ -153,7 +153,7 @@ public class ES2KafkaDemo {
 //		kafkaOutputConfig.addKafkaProperty("buffer.memory","10000");
 		kafkaOutputConfig.setKafkaAsynSend(true);
 //指定文件中每条记录格式，不指定默认为json格式输出
-		kafkaOutputConfig.setReocordGenerator(new ReocordGenerator() {
+		kafkaOutputConfig.setRecordGenerator(new RecordGenerator() {
 			@Override
 			public void buildRecord(Context taskContext, CommonRecord record, Writer builder) {
 				//record.setRecordKey("xxxxxx"); //指定记录key
