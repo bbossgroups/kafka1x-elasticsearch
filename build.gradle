@@ -140,10 +140,10 @@ configure(allprojects) { project ->
 				[group: 'com.bbossgroups.plugins', name: 'bboss-elasticsearch-rest-kafka1x', version: "${bboss_es_version}", transitive: true],
 		)
 //		api 'org.apache-extras.beanshell:bsh:2.0b6'
-		api 'org.xerial:sqlite-jdbc:3.23.1'
+		api 'org.xerial:sqlite-jdbc:3.36.0.3'
 
 		api (
-				[group: 'com.bbossgroups', name: 'bboss-rt', version: "${bboss_version}", transitive: false],
+				[group: 'com.bbossgroups', name: 'bboss-bootstrap-rt', version: "${bboss_version}", transitive: true],
 		)
 
 	}
