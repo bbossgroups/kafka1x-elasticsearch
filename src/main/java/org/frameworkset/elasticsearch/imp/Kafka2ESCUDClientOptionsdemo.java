@@ -320,7 +320,6 @@ public class Kafka2ESCUDClientOptionsdemo {
 		DataStream dataStream = importBuilder.builder();
 		dataStream.execute();//执行同步操作
 
-		System.out.println();
 	}
 
 }

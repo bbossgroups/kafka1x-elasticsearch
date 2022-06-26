@@ -260,7 +260,6 @@ public class Kafka2ESdemo {
 		DataStream dataStream = importBuilder.builder();
 		dataStream.execute();//执行同步操作
 
-		System.out.println();
 	}
 
 }
