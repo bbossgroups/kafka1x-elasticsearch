@@ -22,12 +22,12 @@ import org.frameworkset.tran.CommonRecord;
 import org.frameworkset.tran.DataRefactor;
 import org.frameworkset.tran.DataStream;
 import org.frameworkset.tran.ExportResultHandler;
+import org.frameworkset.tran.config.ImportBuilder;
 import org.frameworkset.tran.context.Context;
 import org.frameworkset.tran.input.file.FileConfig;
-import org.frameworkset.tran.input.file.FileImportConfig;
-import org.frameworkset.tran.kafka.output.KafkaOutputConfig;
-import org.frameworkset.tran.kafka.output.filelog.FileLog2KafkaImportBuilder;
 import org.frameworkset.tran.metrics.TaskMetrics;
+import org.frameworkset.tran.plugin.file.input.FileInputConfig;
+import org.frameworkset.tran.plugin.kafka.output.Kafka1OutputConfig;
 import org.frameworkset.tran.task.TaskCommand;
 import org.frameworkset.tran.util.RecordGenerator;
 import org.slf4j.Logger;
@@ -61,7 +61,7 @@ public class Filelog2KafkaDemo {
 	 * elasticsearch地址和数据库地址都从外部配置文件application.properties中获取，加载数据源配置和es配置
 	 */
 	public void scheduleTimestampImportData(){
-		FileLog2KafkaImportBuilder importBuilder = new FileLog2KafkaImportBuilder();
+		ImportBuilder importBuilder = new ImportBuilder();
 		importBuilder.setFetchSize(300);
 		//kafka相关配置参数
 		/**
@@ -130,7 +130,7 @@ public class Filelog2KafkaDemo {
 
 		// kafka服务器参数配置
 		// kafka 2x 客户端参数项及说明类：org.apache.kafka.clients.consumer.ConsumerConfig
-		KafkaOutputConfig kafkaOutputConfig = new KafkaOutputConfig();
+		Kafka1OutputConfig kafkaOutputConfig = new Kafka1OutputConfig();
 		kafkaOutputConfig.setTopic("es2kafka");//设置kafka主题名称
 		kafkaOutputConfig.addKafkaProperty("value.serializer","org.apache.kafka.common.serialization.StringSerializer");
 		kafkaOutputConfig.addKafkaProperty("key.serializer","org.apache.kafka.common.serialization.LongSerializer");
@@ -152,10 +152,10 @@ public class Filelog2KafkaDemo {
 
 			}
 		});
-		importBuilder.setKafkaOutputConfig(kafkaOutputConfig);
+		importBuilder.setOutputConfig(kafkaOutputConfig);
 		//定时任务配置结束
 
-		FileImportConfig config = new FileImportConfig();
+		FileInputConfig config = new FileInputConfig();
 		//.*.txt.[0-9]+$
 		//[17:21:32:388]
 //		config.addConfig(new FileConfig("D:\\ecslog",//指定目录
@@ -211,7 +211,7 @@ public class Filelog2KafkaDemo {
 		 * true 开启 false 关闭
 		 */
 		config.setEnableMeta(true);
-		importBuilder.setFileImportConfig(config);
+		importBuilder.setInputConfig(config);
 
 		importBuilder.setFromFirst(false);//setFromfirst(false)，如果作业停了，作业重启后从上次截止位置开始采集数据，
 		//setFromfirst(true) 如果作业停了，作业重启后，重新开始采集数据
