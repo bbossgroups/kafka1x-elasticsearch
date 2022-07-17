@@ -32,8 +32,8 @@ https://gitee.com/bboss/kafka2x-elasticsearch
 ```xml
 <dependency>
   <groupId>com.bbossgroups.plugins</groupId>
-  <artifactId>bboss-elasticsearch-rest-kafka1x</artifactId>
-  <version>6.6.0</version>
+  <artifactId>bboss-datatran-kafka1x</artifactId>
+  <version>6.7.0</version>
   <scope>compile</scope>
 </dependency>
 ```
