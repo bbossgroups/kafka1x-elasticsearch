@@ -351,7 +351,7 @@ public class Filelog2KafkaDemo {
 			}
 
 			@Override
-			public void exception(TaskCommand<Object,RecordMetadata> taskCommand, Exception exception) {
+			public void exception(TaskCommand<Object,RecordMetadata> taskCommand, Throwable exception) {
 				logger.warn(taskCommand.getTaskMetrics().toString(),exception);
 			}
 
