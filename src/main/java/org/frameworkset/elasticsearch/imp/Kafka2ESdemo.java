@@ -237,10 +237,6 @@ public class Kafka2ESdemo {
 				System.out.println(taskCommand.getTaskMetrics());
 			}
 
-			@Override
-			public int getMaxRetry() {
-				return 0;
-			}
 		});
 		/**
 		 importBuilder.setEsIdGenerator(new EsIdGenerator() {

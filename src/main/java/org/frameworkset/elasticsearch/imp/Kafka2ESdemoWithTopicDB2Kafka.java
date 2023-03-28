@@ -259,10 +259,6 @@ public class Kafka2ESdemoWithTopicDB2Kafka {
 				System.out.println(taskCommand.getTaskMetrics());
 			}
 
-			@Override
-			public int getMaxRetry() {
-				return 0;
-			}
 		});
 		/**
 		 importBuilder.setEsIdGenerator(new EsIdGenerator() {

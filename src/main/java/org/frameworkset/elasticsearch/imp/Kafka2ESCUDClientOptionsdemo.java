@@ -298,10 +298,7 @@ public class Kafka2ESCUDClientOptionsdemo {
 				exception.printStackTrace();
 			}
 
-			@Override
-			public int getMaxRetry() {
-				return 0;
-			}
+
 		});
 		/**
 		 importBuilder.setEsIdGenerator(new EsIdGenerator() {
