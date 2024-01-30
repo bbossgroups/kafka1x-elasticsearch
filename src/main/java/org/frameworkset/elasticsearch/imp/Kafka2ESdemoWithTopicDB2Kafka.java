@@ -122,7 +122,7 @@ public class Kafka2ESdemoWithTopicDB2Kafka {
 				.addKafkaConfig("auto.commit.interval.ms","5000")
 				.addKafkaConfig("auto.offset.reset","latest")
 //				.addKafkaConfig("bootstrap.servers","192.168.137.133:9093")
-//				.addKafkaConfig("bootstrap.servers","10.13.11.12:9092")
+//				.addKafkaConfig("bootstrap.servers","10.103.11.12:9092")
 				.addKafkaConfig("bootstrap.servers","192.168.137.133:9092")
 				.addKafkaConfig("enable.auto.commit","true")
 				.addKafkaConfig("max.poll.records","500") // The maximum number of records returned in a single call to poll().
