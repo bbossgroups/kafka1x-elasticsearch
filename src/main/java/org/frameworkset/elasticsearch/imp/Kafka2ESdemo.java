@@ -201,7 +201,7 @@ public class Kafka2ESdemo {
 				/**
 				 * 新版本里面可以直接拿到原始记录数据，这个是kafka的消息数据
 				 */
-				KafkaMapRecord record = (KafkaMapRecord) context.getCurrentRecord();
+				KafkaMapRecord record = (KafkaMapRecord) context.getCurrentRecord().getRecord();
 				if(record.getKey() == null)
 					System.out.println("key is null!");
 				Map data = (Map)record.getData();
