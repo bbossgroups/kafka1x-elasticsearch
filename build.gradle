@@ -28,8 +28,8 @@ configure(allprojects) { project ->
 	}
 
 	tasks.withType(Javadoc) {
-		sourceCompatibility = JAVADOC_SOURCE_LEVEL
-		targetCompatibility = JAVADOC_COMPILER_LEVEL
+//		
+//		
 		options.encoding = 'UTF-8'
 		// disable the crazy super-strict doclint tool in Java 8
         // noinspection SpellCheckingInspection
@@ -126,7 +126,69 @@ configure(allprojects) { project ->
 	configurations {
 		//屏蔽log4j
 	    api.exclude group: 'org.slf4j', module: 'slf4j-log4j12'
-	}
+	
+        apiResolvable {
+            canBeResolved = true
+            extendsFrom api
+        }
+        compileOnlyResolvable {
+            canBeResolved = true
+            extendsFrom compileOnly
+        }
+
+        runtimeOnlyResolvable {
+            canBeResolved = true
+            extendsFrom runtimeOnly
+        }
+    }
+    tasks.register('copyJarFiles', Sync) {
+        dependsOn 'jar'
+        from configurations.apiResolvable {
+        }
+        from jar.outputs
+        exclude { details -> details.file.name.startsWith('bboss-rt') }
+        into 'build/dist/lib'
+
+    }
+
+    tasks.register('copyRTJarFiles', Copy) {
+        dependsOn 'copyJarFiles'
+
+        from configurations.apiResolvable {
+        }
+        include { details -> details.file.name.startsWith('bboss-rt') }
+        into 'build/dist'
+        rename("bboss-rt-${bboss_version}.jar", "${project.name}-${bboss_version}.jar")
+    }
+    tasks.register('copyToolFiles', Copy) {
+        dependsOn 'copyRTJarFiles'
+
+        from('runfiles')
+                {
+                    expand(
+                            bboss_version: "${bboss_version}",
+                            project: "${project.name}"
+                    )
+
+                }
+        filteringCharset = 'UTF-8'
+        into 'build/dist/'
+
+
+    }
+    tasks.register('copyResourcesfiles', Sync) {
+        from fileTree(dir: 'src/main/resources')
+        filteringCharset = 'UTF-8'
+        into 'build/dist/resources'
+    }
+    tasks.register('releaseVersion',Zip) {
+        dependsOn 'copyToolFiles','copyResourcesfiles'
+
+        //appendix = 'wrapper'
+        archiveClassifier = 'released'
+        from 'build/dist/'
+
+    }
 	dependencies {
 		testImplementation 'junit:junit:4.13.1'
 		//采用log4j2记录日志
@@ -150,56 +212,6 @@ configure(allprojects) { project ->
 
 	}
 
-
-
-	task copyJarFiles(type: Sync,dependsOn:'jar'){		
-		from configurations.api{
-			canBeResolved=true
-		}
-		from jar.outputs
-		exclude { details -> details.file.name.startsWith('bboss-rt')  }
-		into 'build/dist/lib'
-
-	}
-
-	task copyRTJarFiles(type: Copy,dependsOn:'copyJarFiles'){
-
-		from configurations.api{
-			canBeResolved=true
-		}
-		include { details -> details.file.name.startsWith('bboss-rt')  }
-		 into 'build/dist'
-	     rename ("bboss-rt-${bboss_version}.jar", "${project.name}-${bboss_version}.jar")
-	}
-	task copyToolFiles(type: Copy ,dependsOn:'copyRTJarFiles')  {
-		
-		from ('runfiles')
-			{
-				expand(
-						bboss_version:"${bboss_version}",
-                        project:"${project.name}"
-						)
-
-			}		
-		filteringCharset = 'UTF-8'
-		into 'build/dist/'
-
-
-
-	}
-	task copyResourcesfiles(type: Sync )  {
-		from fileTree(dir: 'src/main/resources')
-		filteringCharset = 'UTF-8'
-		into 'build/dist/resources'
-	}
-
-	task releaseVersion(type: Zip,dependsOn:['copyToolFiles','copyResourcesfiles']) {
-
-		//appendix = 'wrapper'
-		archiveClassifier = 'released'
-		from 'build/dist/'
-
-	}
 
 }
 
